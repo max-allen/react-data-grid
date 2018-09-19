@@ -45,7 +45,7 @@ class Toolbar extends React.Component {
   renderDeleteRowButton = () => {
     if (this.props.onDeleteRow) {
       return (<button type="button" className="btn" onClick={this.onDeleteRow}>
-        {this.props.deletRowButtonText}
+        {this.props.deleteRowButtonText}
         </button>);
     }
   };
@@ -59,6 +59,7 @@ class Toolbar extends React.Component {
   };
 
   render() {
+    console.log('PROPS', this.props)
     return (
       <div className="react-grid-Toolbar">
         <div className="tools">

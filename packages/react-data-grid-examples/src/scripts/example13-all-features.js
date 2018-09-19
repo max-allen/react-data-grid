@@ -232,6 +232,12 @@ class Example extends React.Component {
     this.setState({ rows });
   };
 
+  handleRemoveRow = () => {
+    let rows = this.state.rows.slice();
+    rows.splice(-1,1);
+    this.setState({ rows });
+  }
+
   getRowAt = (index) => {
     if (index < 0 || index > this.getSize()) {
       return undefined;
@@ -253,7 +259,7 @@ class Example extends React.Component {
         rowGetter={this.getRowAt}
         rowsCount={this.getSize()}
         onGridRowsUpdated={this.handleGridRowsUpdated}
-        toolbar={<Toolbar onAddRow={this.handleAddRow}/>}
+        toolbar={<Toolbar onAddRow={this.handleAddRow} onDeleteRow={this.handleRemoveRow}/>}
         enableRowSelect={true}
         rowHeight={50}
         minHeight={600}
