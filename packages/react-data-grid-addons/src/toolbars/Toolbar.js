@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 class Toolbar extends React.Component {
   static propTypes = {
     onAddRow: PropTypes.func,
+    onDeleteRow: PropTypes.func,
     onToggleFilter: PropTypes.func,
     enableFilter: PropTypes.bool,
     numberOfRows: PropTypes.number,
@@ -15,7 +16,9 @@ class Toolbar extends React.Component {
 
   static defaultProps = {
     enableAddRow: true,
+    enableDeleteRow: true,
     addRowButtonText: 'Add Row',
+    deleteRowButtonText: 'Delete Row',
     filterRowsButtonText: 'Filter Rows'
   };
 
@@ -25,11 +28,25 @@ class Toolbar extends React.Component {
     }
   };
 
+  onDeleteRow = () => {
+    if (this.props.onDeleteRow !== null && this.props.onDeleteRow instanceof Function) {
+      this.props.onDeleteRow({newRowIndex: this.props.numberOfRows});
+    }
+  };
+
   renderAddRowButton = () => {
-    if (this.props.onAddRow ) {
+    if (this.props.onAddRow) {
       return (<button type="button" className="btn" onClick={this.onAddRow}>
         {this.props.addRowButtonText}
       </button>);
+    }
+  };
+
+  renderDeleteRowButton = () => {
+    if (this.props.onDeleteRow) {
+      return (<button type="button" className="btn" onClick={this.onDeleteRow}>
+        {this.props.deletRowButtonText}
+        </button>);
     }
   };
 
@@ -46,6 +63,7 @@ class Toolbar extends React.Component {
       <div className="react-grid-Toolbar">
         <div className="tools">
           {this.renderAddRowButton()}
+          {this.renderDeleteRowButton()}
           {this.renderToggleFilterButton()}
           {this.props.children}
         </div>
