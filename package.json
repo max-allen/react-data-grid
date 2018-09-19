@@ -1,6 +1,6 @@
 {
   "name": "dealstat-grid",
-  "private": true,
+  "private": false,
   "description": "dealstat rdg-edits",
   "main": "src/index.js",
   "scripts": {
